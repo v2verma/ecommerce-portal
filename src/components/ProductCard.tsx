@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Rating from "./Rating";
 
 interface ProductCardProps {
   product: {
@@ -10,6 +11,8 @@ interface ProductCardProps {
     title: string;
     description: string;
     price: number;
+    brand: string;
+    rating: number;
   };
 }
 
@@ -26,6 +29,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className="w-full h-48 object-cover"
         />
         <CardContent className="p-4">
+          <div className="flex items-center justify-between w-full">
+            <span className="text-md  text-blue-500 font-bold">
+              {product.brand}
+            </span>
+            <Rating rating={product.rating} />
+          </div>
           <h3 className="text-lg font-semibold">{product.title}</h3>
           <p className="text-sm text-gray-600 mt-2">{product.description}</p>
           <p className="text-lg font-bold mt-2">{`₹${product.price}`}</p>
