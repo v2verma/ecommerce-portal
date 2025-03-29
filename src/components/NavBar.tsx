@@ -3,9 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Languages, Menu, X } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../redux/store";
+import { Link } from "react-router-dom";
+import { Badge } from "./ui/badge";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  console.log(`NavBar cartItems: ${JSON.stringify(cartItems)}`); // Debugging line
   return (
     <div className="relative">
       <header className="bg-white shadow-md w-full sticky top-0 z-50">
@@ -20,7 +26,18 @@ const NavBar = () => {
               Hi, Guest User
             </a>
             <Languages className="text-blue-500 hover:text-blue-100" />
-            <ShoppingCart className="text-blue-500 hover:text-blue-100" />
+            {/* <ShoppingCart className="text-blue-500 hover:text-blue-100" /> */}
+            <Link to="/cart" className="flex items-center gap-2">
+              <ShoppingCart className="text-blue-500 hover:text-blue-100 w-6 h-6" />
+              {cartItems.length > 0 && (
+                <Badge
+                  className="px-2 py-1 text-xs font-bold"
+                  variant="destructive"
+                >
+                  {cartItems.length}
+                </Badge>
+              )}
+            </Link>
           </nav>
 
           {/* Mobile Menu */}
