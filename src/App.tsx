@@ -7,17 +7,31 @@ import {
 } from "react-router-dom";
 // import { useRoutes } from "react-router-dom";
 import { routes } from "@/routes";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 function Layout() {
   const location = useLocation();
   const hideNavbarRoutes = ["/login", "/signup"];
 
   return (
-    <>
-      {/* {!hideNavbarRoutes.includes(location.pathname) && <Navbar />} */}
+    // <>
+    //   {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
+    //   <NavBar />
 
-      {useRoutes(routes)}
-    </>
+    //   {useRoutes(routes)}
+    //   <Footer />
+    // </>
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar (conditionally rendered) */}
+      {!hideNavbarRoutes.includes(location.pathname) && <NavBar />}
+
+      {/* Main content should take all available space */}
+      <main className="flex-grow">{useRoutes(routes)}</main>
+
+      {/* Footer will always stick to the bottom */}
+      <Footer />
+    </div>
   );
 }
 

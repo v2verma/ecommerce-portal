@@ -1,9 +1,13 @@
+// import ProductCard from "@/components/ProductCard";
+import ProductList from "@/components/ProductList";
 import React from "react";
 
 const Home = () => {
   return (
     <div>
-      <h1 className="text-5xl text-center p-16">Vite Home</h1>
+      {" "}
+      {/* <ProductCard /> */}
+      <ProductList />
     </div>
   );
 };
